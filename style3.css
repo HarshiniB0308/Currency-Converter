@@ -1,0 +1,338 @@
+/* ============================
+   Variables & Reset
+============================ */
+:root {
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --bg-color: #f0fdf4; /* A soft, modern off-white/mint background */
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --focus-ring: rgba(59, 130, 246, 0.5);
+    --error: #ef4444;
+    --success: #10b981;
+    --transition: 0.2s ease;
+    
+    font-family: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at top right, #e0f2fe, #f0fdf4);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+/* ============================
+   Layout & Card
+============================ */
+.container {
+    width: 100%;
+    max-width: 480px;
+}
+
+.converter-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.icon-main {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    background: #eff6ff;
+    padding: 0.75rem;
+    border-radius: 50%;
+}
+
+.card-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.card-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* ============================
+   Inputs & Controls
+============================ */
+.app-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+}
+
+.input-wrapper,
+.select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.input-wrapper:focus-within,
+.select-wrapper:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--focus-ring);
+    background: #ffffff;
+}
+
+/* Base input styling */
+input, select {
+    width: 100%;
+    padding: 1rem;
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    border: none;
+    background: transparent;
+    outline: none;
+    appearance: none; /* removes native styling for selects */
+    -webkit-appearance: none;
+}
+
+/* Amount Input */
+.currency-symbol {
+    padding-left: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+input[type="number"] {
+    padding-left: 0.5rem;
+}
+
+/* Select Styling */
+.currency-selectors {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    position: relative;
+}
+
+.select-group {
+    flex: 1;
+}
+
+.flag-icon {
+    padding-left: 1rem;
+    font-size: 1.25rem;
+}
+
+select {
+    padding-left: 0.5rem;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 1rem;
+    pointer-events: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+}
+
+/* Swap Button */
+.swap-btn {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: white;
+    color: var(--text-main);
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+    align-self: flex-end;
+    margin-bottom: 2px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.swap-btn:hover {
+    background: #f1f5f9;
+    color: var(--primary);
+    transform: rotate(180deg);
+}
+
+.swap-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--focus-ring);
+    border-color: var(--primary);
+}
+
+/* Primary Button */
+.btn-primary {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    background: var(--primary);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* ============================
+   State Indicators (Loading, Error)
+============================ */
+.hidden {
+    display: none !important;
+}
+
+.state-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(59, 130, 246, 0.2);
+    border-left-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+.state-indicator.error {
+    background: #fef2f2;
+    color: var(--error);
+    border: 1px solid #fecaca;
+}
+
+/* ============================
+   Result Display
+============================ */
+.result-container {
+    margin-top: 1rem;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 16px;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.converted-amount {
+    margin-bottom: 0.75rem;
+}
+
+#result-value {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+#result-currency {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-left: 0.25rem;
+}
+
+.exchange-rate-info {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.timestamp {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    opacity: 0.8;
+}
+
+/* ============================
+   Responsive
+============================ */
+@media (max-width: 480px) {
+    .converter-card {
+        padding: 2rem 1.25rem;
+    }
+    
+    .currency-selectors {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .swap-btn {
+        align-self: center;
+        transform: rotate(90deg);
+        margin: -0.5rem 0;
+        z-index: 2; /* To overlay inputs slightly */
+    }
+    .swap-btn:hover {
+        transform: rotate(270deg);
+    }
+}
